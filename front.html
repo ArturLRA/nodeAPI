@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type='email' id='email'>
+    <input type="password" id='senha'>
+    <button onclick='login()'>Entrar</button>
+
+    <script>
+        async function login() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const obj = {
+                email,
+                senha
+            }
+            const respostaDaAPI = await fetch('http://localhost:3333/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            
+            });
+
+            const respostaEmJSON = await respostaDaAPI.json();
+
+            console.log(respostaEmJSON);
+        }
+
+    </script>
+</body>
+</html>
